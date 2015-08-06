@@ -483,15 +483,19 @@ ngx_feature_libs=
 
 # C types
 
-ngx_type="int"; . auto/types/sizeof
+# QNX(shka)
+# cross-build autotest cannot be run on host platform
+# these values are hardcoded in ngx_posix_config.h
+if [ "$NGX_PLATFORM" != QNX ]; then
+    ngx_type="int"; . auto/types/sizeof
 
-ngx_type="long"; . auto/types/sizeof
+    ngx_type="long"; . auto/types/sizeof
 
-ngx_type="long long"; . auto/types/sizeof
+    ngx_type="long long"; . auto/types/sizeof
 
-ngx_type="void *"; . auto/types/sizeof; ngx_ptr_size=$ngx_size
-ngx_param=NGX_PTR_SIZE; ngx_value=$ngx_size; . auto/types/value
-
+    ngx_type="void *"; . auto/types/sizeof; ngx_ptr_size=$ngx_size
+    ngx_param=NGX_PTR_SIZE; ngx_value=$ngx_size; . auto/types/value
+fi
 
 # POSIX types
 
@@ -504,37 +508,41 @@ case "$NGX_AUTO_CONFIG_H" in
     ;;
 esac
 
-ngx_type="uint64_t"; ngx_types="u_int64_t"; . auto/types/typedef
+# QNX(shka)
+# cross-build autotest cannot be run on host platform
+# these values are hardcoded in ngx_posix_config.h
+if [ "$NGX_PLATFORM" != QNX ]; then
+    ngx_type="uint64_t"; ngx_types="u_int64_t"; . auto/types/typedef
 
-ngx_type="sig_atomic_t"; ngx_types="int"; . auto/types/typedef
-. auto/types/sizeof
-ngx_param=NGX_SIG_ATOMIC_T_SIZE; ngx_value=$ngx_size; . auto/types/value
+    ngx_type="sig_atomic_t"; ngx_types="int"; . auto/types/typedef
+    . auto/types/sizeof
+    ngx_param=NGX_SIG_ATOMIC_T_SIZE; ngx_value=$ngx_size; . auto/types/value
 
-ngx_type="socklen_t"; ngx_types="int"; . auto/types/typedef
+    ngx_type="socklen_t"; ngx_types="int"; . auto/types/typedef
 
-ngx_type="in_addr_t"; ngx_types="uint32_t"; . auto/types/typedef
+    ngx_type="in_addr_t"; ngx_types="uint32_t"; . auto/types/typedef
 
-ngx_type="in_port_t"; ngx_types="u_short"; . auto/types/typedef
+    ngx_type="in_port_t"; ngx_types="u_short"; . auto/types/typedef
 
-ngx_type="rlim_t"; ngx_types="int"; . auto/types/typedef
+    ngx_type="rlim_t"; ngx_types="int"; . auto/types/typedef
 
-. auto/types/uintptr_t
+    . auto/types/uintptr_t
 
-. auto/endianness
+    . auto/endianness
 
-ngx_type="size_t"; . auto/types/sizeof
-ngx_param=NGX_MAX_SIZE_T_VALUE; ngx_value=$ngx_max_value; . auto/types/value
-ngx_param=NGX_SIZE_T_LEN; ngx_value=$ngx_max_len; . auto/types/value
+    ngx_type="size_t"; . auto/types/sizeof
+    ngx_param=NGX_MAX_SIZE_T_VALUE; ngx_value=$ngx_max_value; . auto/types/value
+    ngx_param=NGX_SIZE_T_LEN; ngx_value=$ngx_max_len; . auto/types/value
 
-ngx_type="off_t"; . auto/types/sizeof
-ngx_param=NGX_MAX_OFF_T_VALUE; ngx_value=$ngx_max_value; . auto/types/value
-ngx_param=NGX_OFF_T_LEN; ngx_value=$ngx_max_len; . auto/types/value
+    ngx_type="off_t"; . auto/types/sizeof
+    ngx_param=NGX_MAX_OFF_T_VALUE; ngx_value=$ngx_max_value; . auto/types/value
+    ngx_param=NGX_OFF_T_LEN; ngx_value=$ngx_max_len; . auto/types/value
 
-ngx_type="time_t"; . auto/types/sizeof
-ngx_param=NGX_TIME_T_SIZE; ngx_value=$ngx_size; . auto/types/value
-ngx_param=NGX_TIME_T_LEN; ngx_value=$ngx_max_len; . auto/types/value
-ngx_param=NGX_MAX_TIME_T_VALUE; ngx_value=$ngx_max_value; . auto/types/value
-
+    ngx_type="time_t"; . auto/types/sizeof
+    ngx_param=NGX_TIME_T_SIZE; ngx_value=$ngx_size; . auto/types/value
+    ngx_param=NGX_TIME_T_LEN; ngx_value=$ngx_max_len; . auto/types/value
+    ngx_param=NGX_MAX_TIME_T_VALUE; ngx_value=$ngx_max_value; . auto/types/value
+fi
 
 # syscalls, libc calls and some features
 

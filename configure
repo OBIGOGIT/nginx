@@ -44,6 +44,11 @@ if test -z "$NGX_PLATFORM"; then
 else
     echo "building for $NGX_PLATFORM"
     NGX_SYSTEM=$NGX_PLATFORM
+    # QNX(shka)
+    # only x86 is supported for now
+    if [ "$NGX_PLATFORM" = QNX ]; then
+        NGX_MACHINE=i386
+    fi
 fi
 
 . auto/cc/conf
