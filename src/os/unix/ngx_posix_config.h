@@ -155,9 +155,9 @@ typedef struct aiocb  ngx_aiocb_t;
 extern char **environ;
 
 // QNX(shka)
-// Unfortunately these values cannot be gotten with autu/unix
+// Unfortunately these values cannot be gotten with auto/unix
 // because cross-built autotest cannot be run on host platform
-#if (NGX_QNX)
+#if (NGX_CROSSBUILD && NGX_QNX)
 #define NGX_PTR_SIZE            4
 #define NGX_SIZE_T_LEN          sizeof("-2147483648") - 1
 #define NGX_MAX_SIZE_T_VALUE    2147483647

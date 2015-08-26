@@ -123,5 +123,20 @@ typedef struct iocb  ngx_aiocb_t;
 
 extern char **environ;
 
+// Unfortunately these values cannot be gotten with auto/unix
+// because cross-built autotest cannot be run on host platform
+#if (NGX_CROSSBUILD)
+#define NGX_PTR_SIZE            4
+#define NGX_SIZE_T_LEN          sizeof("-2147483648") - 1
+#define NGX_MAX_SIZE_T_VALUE    2147483647
+#define NGX_TIME_T_LEN          sizeof("-2147483648") - 1
+#define NGX_TIME_T_SIZE         4
+#define NGX_MAX_TIME_T_VALUE    2147483647
+#define NGX_OFF_T_LEN           sizeof("-9223372036854775807") - 1
+#define NGX_MAX_OFF_T_VALUE     9223372036854775807
+#define NGX_SIG_ATOMIC_T_SIZE   4
+
+#define NGX_HAVE_LITTLE_ENDIAN  1
+#endif
 
 #endif /* _NGX_LINUX_CONFIG_H_INCLUDED_ */

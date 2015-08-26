@@ -44,11 +44,20 @@ if test -z "$NGX_PLATFORM"; then
 else
     echo "building for $NGX_PLATFORM"
     NGX_SYSTEM=$NGX_PLATFORM
-    # QNX(shka)
-    # only x86 is supported for now
-    if [ "$NGX_PLATFORM" = QNX ]; then
-        NGX_MACHINE=i386
-    fi
+
+    NGX_CROSSBUILD=yes
+    case "$NGX_PLATFORM" in
+        QNX:*:x86)
+            NGX_SYSTEM=QNX
+            NGX_MACHINE=i386
+        ;;
+
+        Linux:*:arm)
+            NGX_SYSTEM=Linux
+            NGX_MACHINE=arm
+        ;;
+    esac
+
 fi
 
 . auto/cc/conf

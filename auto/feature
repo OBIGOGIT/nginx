@@ -49,10 +49,9 @@ eval "/bin/sh -c \"$ngx_test\" >> $NGX_AUTOCONF_ERR 2>&1"
 
 if [ -x $NGX_AUTOTEST ]; then
 
-    # QNX(shka)
     # cross-built autotest cannot be run on host platform
     # just assume "found" if autotest can be built with the feature
-    if [ "$NGX_PLATFORM" = QNX ]; then
+    if [ "$NGX_CROSSBUILD" = yes ]; then
         ngx_feature_run=no 
     fi
 

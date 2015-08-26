@@ -483,10 +483,9 @@ ngx_feature_libs=
 
 # C types
 
-# QNX(shka)
 # cross-build autotest cannot be run on host platform
 # these values are hardcoded in ngx_posix_config.h
-if [ "$NGX_PLATFORM" != QNX ]; then
+if [ "$NGX_CROSSBUILD" != yes ]; then
     ngx_type="int"; . auto/types/sizeof
 
     ngx_type="long"; . auto/types/sizeof
@@ -508,10 +507,9 @@ case "$NGX_AUTO_CONFIG_H" in
     ;;
 esac
 
-# QNX(shka)
 # cross-build autotest cannot be run on host platform
 # these values are hardcoded in ngx_posix_config.h
-if [ "$NGX_PLATFORM" != QNX ]; then
+if [ "$NGX_CROSSBUILD" != yes ]; then
     ngx_type="uint64_t"; ngx_types="u_int64_t"; . auto/types/typedef
 
     ngx_type="sig_atomic_t"; ngx_types="int"; . auto/types/typedef

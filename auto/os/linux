@@ -3,6 +3,10 @@
 # Copyright (C) Nginx, Inc.
 
 
+if [ "$NGX_CROSSBUILD" = yes ]; then
+    have=NGX_CROSSBUILD . auto/have_headers
+fi
+
 have=NGX_LINUX . auto/have_headers
 
 CORE_INCS="$UNIX_INCS"
