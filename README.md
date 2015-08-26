@@ -1,4 +1,4 @@
-# nginx-qnx
+# nginx
 A cross-compilation of nginx-1.8.0 for QNX 6.6/x86 and Linux/arm
 
 
@@ -19,12 +19,9 @@ A cross-compilation of nginx-1.8.0 for QNX 6.6/x86 and Linux/arm
     - --with-cc="qcc -V4.7.3,gcc_ntox86"
     - --with-ld-opt="-lsocket -llogin"
 
-For example (all of this needs to be typed in one line):
+ For example (all of this needs to be typed in one line):
 
-    $ ./configure
-        --crossbuild=QNX:6.6.0:x86
-        --with-cc="qcc -V4.7.3,gcc_ntox86"
-        --with-ld-opt="-lsocket -llogin"
+    $ ./configure --crossbuild=QNX:6.6.0:x86 --with-cc="qcc -V4.7.3,gcc_ntox86" --with-ld-opt="-lsocket -llogin"
 
 3. Run make
 
@@ -43,14 +40,10 @@ For example (all of this needs to be typed in one line):
     - --with-ld-opt="-L/usr/arm-linux-gnueabihf/lib"
     - --with-cc-opt="-L/usr/arm-linux-gnueabihf/include"
 
-For example (all of this needs to be typed in one line):
+ For example (in case you installed arm-linux-gnueabihf):
 in case you installed arm-linux-gnueabihf
 
-    $ ./configure
-        --crossbuild=Linux::arm
-        --with-cc="arm-linux-gnueabihf-gcc"
-        --with-ld-opt="-L/usr/arm-linux-gnueabihf/lib"
-        --with-cc-opt="-L/usr/arm-linux-gnueabihf/include"
+  $ ./configure --crossbuild=Linux::arm --with-cc="arm-linux-gnueabihf-gcc" --with-ld-opt="-L/usr/arm-linux-gnueabihf/lib" --with-cc-opt="-L/usr/arm-linux-gnueabihf/include"
 
 3. Run make
 
