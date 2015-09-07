@@ -8,6 +8,6 @@ if [ "x${QNX_TARGET}" == "x" ]; then
   source ~/qnx660/qnx660-env.sh
 fi
 
-./configure --crossbuild=QNX:6.6.0:x86 --with-cc="qcc -V4.7.3,gcc_ntox86" --with-ld-opt="-lsocket -llogin" --without-http_rewrite_module
+./configure --crossbuild=QNX:6.6.0:arm --with-cc="qcc -V4.7.3,gcc_ntoarmv7le" --with-ld-opt="-lsocket -llogin" --without-http_rewrite_module
 
 make -j8
